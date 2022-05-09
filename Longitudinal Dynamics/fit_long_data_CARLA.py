@@ -3,24 +3,24 @@ import pyomo.environ as pyo
 import pandas as pd
 import numpy as np
 
-carsim_files = [
-    '.20 CarSim Trial.xlsx',
-    '.30 CarSim Trial.xlsx',
-    '.40 CarSim Trial.xlsx',
-    '.50 CarSim Trial.xlsx',
-    '.60 CarSim Trial.xlsx',
-    '.70 CarSim Trial.xlsx',
-    '.80 CarSim Trial.xlsx',
-    '.90 CarSim Trial.xlsx',
-    '1.0 CarSim Trial.xlsx',
+carla_files = [
+    '.20 CARLA Trial.xlsx',
+    '.30 CARLA Trial.xlsx',
+    '.40 CARLA Trial.xlsx',
+    '.50 CARLA Trial.xlsx',
+    '.60 CARLA Trial.xlsx',
+    '.70 CARLA Trial.xlsx',
+    '.80 CARLA Trial.xlsx',
+    '.90 CARLA Trial.xlsx',
+    '1.0 CARLA Trial.xlsx',
 ]
 mass = 1845  # kg
 
 
 def plotData(b_arr, F_f_arr, C_d_arr):
     trials = []
-    for file in carsim_files:
-        trials.append(pd.read_excel(f'CarSimData/{file}'))
+    for file in carla_files:
+        trials.append(pd.read_excel(f'CARLAData/{file}'))
     print('--- Final Velocities ---')
     for i in range(len(trials)):
         fig = plt.figure(i)
@@ -46,7 +46,7 @@ def plotData(b_arr, F_f_arr, C_d_arr):
 
 
 def runOptimizer(file_name, motor_input):
-    data = pd.read_excel(f'CarSimData/{file_name}')
+    data = pd.read_excel(f'CARLAData/{file_name}')
 
     # Make sure to change label below for correct velocity data
     v = data['vz'].values
@@ -100,12 +100,12 @@ def getForceParameters():
     b_arr = []
     F_f_arr = []
     C_d_arr = []
-    carsim_input = .10
-    file_names = carsim_files
+    carla_input = .10
+    file_names = carla_files
 
     for i in range(len(file_names)):
-        carsim_input = carsim_input + .10
-        b, F_f, C_d = runOptimizer(file_names[i], carsim_input)
+        carla_input = carla_input + .10
+        b, F_f, C_d = runOptimizer(file_names[i], carla_input)
         b_arr.append(b)
         F_f_arr.append(F_f)
         C_d_arr.append(C_d)
@@ -138,8 +138,8 @@ def plot_multiple_data(b_arr, F_f_arr, C_d_arr):
     trials = []
     colors = ['r', 'g', 'b', 'y', 'm', 'c', 'k']
 
-    for file in carsim_files:
-        trials.append(pd.read_excel(f'CarSimData/{file}'))
+    for file in carla_files:
+        trials.append(pd.read_excel(f'CARLA_Data/{file}'))
 
     print('--- Final Velocities ---')
     fig = plt.figure()

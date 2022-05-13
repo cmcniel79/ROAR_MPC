@@ -5,6 +5,8 @@ A video of the MPC module running on the easy map can be found here: https://www
 
 And a video of the MPC module running on the Berkeley minor map can be found here: https://www.youtube.com/watch?v=1iVn_CoDxvE
 
+The actual MPC module for CARLA is not in this repo but can actually be found here: https://github.com/cmcniel79/ROAR/blob/main/ROAR/control_module/mpc_full_controller.py
+
 ## Required Packages
 Pyomo was used for every optimization problem here and needs to be installed. The IPOPT solver also needs to be installed.
 
